@@ -1,0 +1,8 @@
+[line_number G][line_number gg] goto line number
+[line_number,line_number
+C replaces the rest of the line (starting at cursor position) with your edit.
+cc and S are synonyms and replace the whole line(s) with your edit.
+Prefix the dd command with the number of lines you want to delete below it. For example, if you want to delete 3 consecutive lines below line 3 press
+# 3dd
+
+

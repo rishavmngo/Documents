@@ -1,0 +1,227 @@
+Some questions
+> when to use rem and em
+> when to use flexbox and grid;
+> learn about pseduo classes
+
+
+
+
+
+from the book css master
+>> structuring your code
+  >> well structured html code is important.
+>> maintainability is most important characterstic any good code base.
+>> the mantra is small piece lossely joined.
+meaning small pieces like product list, nav bar can be reused.
+
+>> use id over class if the element is unique or specific on that page.
+
+STRUCTURAL ELEMENTS
+>> section
+>> header 
+>> footer 
+>> Nav
+>> Article
+>> adide
+>> Main
+
+NOTE:- In most brwsers, using these new elements works fine, but Internet Explore and older doesn't apply styles to elements it does't know about. This can be remedied using a snippet of javascript know as a "shim" or "polyfill" script.
+
+
+
+> div is an appropriate element to use for grouping content when there is no other more sementically correct element that suits your purpose.
+
+NOTE:- In most browsers, using these new elements works fine, but Internet Explore and older doesn't apply styles to elements it does't know about. This can be remedied using a snippet of javascript know as a "shim" or "polyfill" script.
+
+
+
+> div is an appropriate element to sue for grouping content when there is no other more sementically correct element that suits your purpose.
+> Sometimes you need to add an extra element to your documents purely for styling purposes, such as wrapper around the entire page to assis with creating a centered layout.
+
+> Span is an assocate of the div element.
+> span is distinct form div int that it is a text-level element, ans use to provide structure within the flow of a peice of text.
+> always make sure that before using div and span that there is no rich semantic elements.
+
+
+> The <i> element stands for content that is different form its surrounding context, and would generally be typographically styled as italic.
+> The <b> element has almost the exact same definition, but for content that traditionally would be boldface.
+> the <em> and <strong> in that they don't say anything abour the emphasis of the content within them.
+> Most of the time you'd want <em> or <strong>, since they are the semantically correct choices for emphasis and strong emphasis in a piece of text.
+
+Ectending th Semantics of HTML
+
+> For a long time web developers have been exploring ways of adding new semantics and structure to the limited vocabulary of html.
+
+Chapter 2
+
+  
+CSS Selectors
+
+Type and descendant selectors
+> Type selectors are used to target a prticular type of element, such as a paragrah (as show next) or a deading element.
+ex:-
+    p {
+        color: black;
+    }
+example of desendant selectors
+ex:-
+    blockquite p {
+        padding-left: 2em;
+    }
+
+type ,desendant , Id, class are the main four selectors of css.
+
+CHILD and Sibling Selectors
+
+On top of these basi selectors, css conains number of more advance selectors. 
+
+Child selectors
+wheras a descnedant selector will select all the descendants fo an element, a child selector. Wheras a desendant selector will select all the descendatnts of and element,
+child selectors only targets the elements's immediate descendsants, or children. In the following example, the list items in the outer list will be give a custom icon while list items in the nested list will remain unaffected.
+
+(>) combinator for child (+) combinator for sibling (~) combinator for every element that have the sibling
+
+for example
+    h2 ~ p {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #777;
+    }
+ATTRIBUTE SELECTORS
+ abbr[title] {
+     border-bottom: 1px dotted #999;
+ }
+
+ abbr[title]: hover {
+     cursor: help;
+ }
+
+to match a value at the start of an attrubute, use a charet character(^)
+a[href^="http:"]
+
+to match a value at the end of an attrubute, use a dollar sign($).
+img[src$=".jpg"]
+
+to match a value anywhere in an attribute, use an asterick(*).
+a[href*="/about/"]
+
+to match a value in a space-separated list of strings(such as value in rel attributes), use a tilde-character(~).
+a[rel~=next]
+
+to selects elements where the start of the value matches, either by itself or immediately followed by a dash. For this kind fo matching, use a pipe-character(|).
+a[hreflang|=en]
+
+Pseudo-elements
+There are times whe you would like to traget a part of the page that is not represented by an element , but you don't want to litter your page with extra markup.
+
+::first-letter psedudo element to target the first letter of a piece of text.
+::first-line to target the first line of each of the piece of text.
+
+
+Pseudo-classes
+ if you want to syle element based on somethin other than structure of the doc for instance, the state of a hyeper link or form element.
+this selectors, starting with a colon character(:) are used to target a specific state or relationshop found in the element you apply them to. 
+
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: green;
+}
+
+a:hover,
+a:focus {
+    color: red;
+}
+
+a:active {
+    color: purple;
+}
+
+Targets and Negations
+another useful pseudo-class is :target, which matches any element that has an ID attributes that is currently represented in the URL hash of the page.
+
+structual Psedudo-classes
+tr:nth-child(odd) {
+    background: yellow;
+}
+This would style the first and then every alternate row in a table with a yellow background. The nth-child selector acts as a function that can accept a number of differernt expressions as argumetns. It will accept the keywords odd and even, as indicated in the preceding example. It can also be a number representing the ordinal position of the targeted elements,
+:nth-child(3n-4)
+:nth-last-child(N) counts from back
+
+:nth-of-type(N)
+:nth-last-of-type(N)
+
+Form Pseudo-Classes
+
+//when email is invalid
+input[type="email"]:invalid {
+    border-color: red;
+}
+
+//when email is valid
+input[type="email"]:valid {
+    border-color: Green;
+}
+
+
+The Cascade
+With even a moderately complicated style sheet, it is likely that two or more rules will target the same element. CSS handles such conflict through a process known as the cascade, a concept improtanat enough that it's right there in the name --cascading style sheets.
+
+> author style sheets are those written by the site developers and are considered the most important. Users can apply their own styles via the browser or user agent are given the least importance
+
+author style sheet >> user style sheet >> user-agent style sheet
+
+> to give users more control, they can override any rule by specifyig it as !important even a rule flagged as !important by the author. 
+> The !important annotation is added to the end of a property declaration, and looks like this when used in a rule:
+
+p {
+    font-size: 1.5em !important;
+    color: #666 !important;
+}
+
+the reason for letting users override rules using !important is to support specific accessibility needs such as allowing users with certain forms of dyslexia to use a medium-contrast user style sheet.
+so the cascade works in the following order of importance:
+
+ - user styles flagged as !important
+ - author styles flagged as !important
+ - user styles
+ - style applied by the browser/user agent
+
+ Rules are then ordered by how specifc the selector is. Rules with more specific selectors override those with less specific ones. If two rules are equally specific, the last one defined takes precedence.
+
+
+  SPECIFICITY
+> To calculate how specific a rule is , each type of selector is assigned with a numeric value.
+> The specificity of a rule is then calculated by adding up the value of each of its selectors.
+> unfortunately, specifity is not calculated in base 10 but a high
+
+- if the style is an inline style, a equals 1.
+- b equals the total number if ID selectors.
+- c equals the number of class, pseudo-clas and attribues selceots.
+- d equals the number of type selectors and pseudo-element selectors.
+
+Visual formatting model overview
+
+> The box model is one of the cornerstones of css and dictates how elements are displayed and to a certain extent how they interact with each other.
+> Every element on the page is considered to be a rectangular box made up of the element's , padding, border, and margin.
+> Padding is aplied around the conten area. if you add a background to an elemnt, it will be applied to the area formed by the content and padding. As such, paddin is often used to creat a gutter around content so the it does not appear flush
+> Another property that can be applied to boxes, but does ont afect their layout , is the outline property. which draws a line around an element's border box
+> The margin does't count in border-boxing.
+
+p, h1, and article as block element 
+element such as span, strong, and time are described as inline-level element
+
+In normal flow block-level boxes
+
+Margin-collapse
+
+margin will collapse in to one margin and the product margin in the greates among them.
+> margin will also collapse to it self. 
+> say you have an empty element with a margin but no border or padding . In this situation, the top margin in touching the bottom margin, and they collapse together.
+
+Web Typrography
+
+Text Color
+> Text color is perhaps one of the most basic things we set for a documents.

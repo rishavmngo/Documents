@@ -1,0 +1,8 @@
+ls list directory
+pwd present working directory
+ cd / root directory
+ cd .. back to home
+
+ $ gedit sampleprogram.c      //to create a .c file of name sampleprogram
+ $ gcc sampleProgram.c -o sampleProgram 
+ $ .\programname

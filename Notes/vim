@@ -1,0 +1,34 @@
+[set number] set the number 
+[.vimrc] to edit config file
+[line number +shift+g] to jump to the line number
+[shift+g] to go to the end of the file
+[$] to go to the end of the line
+[^] to go to the begging of the line
+[w] to go the the beggning of the word right after
+[b] to go to the beggening of the word right before
+
+some important commands
+[$] move to end of the line its like pressing "A" but not put you in insert mode
+[^] move to start of the line its like pressing "I" but not put you in insert mode
+[C,c$] delete every thing in the line after the cursor
+[cw] pressing cw will delte the word untill space and put on you insert mode
+[s,cl] delete the character on cursor and append
+[S,^C] delete whole line and append
+[o, A<CR>]
+[O, ko]
+[f "", F ""] to find the character and use ; and , to find next or previos occurance
+[t "", T ""] t for till, it will find till the character
+[/patter<CR>] to find the pattern after the cursor and use n for next and N for previous.
+[?pattern<CR>] to find the pattern befor the cursor and use n for next and N for previous.
+[:s/target/replacement] for replacing pattern use & for next and u for reverse
+[*] we can also use * command to find find the pattern just place the cursor on the word and Press * it will automatically find that word
+
+[qx{chagnes}q] use for execute a sequence of changes @x for next and u for reverse
+
+
+
+
+
+...We're waiting for content before the site can go live...
+...If you are content with this, let's go ahead with it...
+...We'll launch as soon as we have the content...

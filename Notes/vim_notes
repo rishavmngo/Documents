@@ -1,0 +1,201 @@
+
+operator - and action to perform delete, change,yank.
+count- a Multiplier to "perform an action (count) times"
+
+motion - a motion that represent a bit of text to which to apply the action defined by the operator
+
+word - punction is a seperate word.
+for example f() is 3 words
+
+WORD - punction is not a seperate word.
+for example f() is a single word
+
+w - (word) command to jump to begging of the next word
+b - (back) to jump to the begging of a word backward
+e - (end) to jump to the end of a word
+ge - to jump to the end of a word backward.
+
+Note- in captilize (you can move word by word)
+
+f{char} - to find char forward.
+F{char} - to find char backward.
+t{char} - move the curosr before char
+T{char} - move backward to cursor before char.
+After using f{char} you can type ; to go to next ocurrance of char or , to 
+go backward.
+
+0 : moves to first char of a line.
+^ : moves to fist non-blank char of a line.
+$ : moves to end of a line.
+g_: moves to the non-blank char at the end of a line.
+
+{,} - jumps to paragraph down and upward.
+ctrl + D,U -move down and up at half of page
+
+/{pattern} and ?{pattern} - to search forward and backward 
+use n and N to jump previous and backward.
+
+/<Enter> or ?<enter> do run last search
+* and # to search word which is on cursor forward and backward.
+
+{counts}{commands}
+2w allows us to move the cursor 2 words forward
+5j changes your cursor positon to 5 lines below
+2/word second occurance of the word.
+
+gg to go the top of the file.
+[line number gg,G] go the the particular line
+G to go to the end of the file
+type % jump to matching bracket.
+
+hello my name is rishav raj i am indian.
+
+{operator}{count}{motion}
+
+d2w combination allows you to delete two words almost
+d5j delete 5 lines downwards
+df' to delete everything in the current line form the cursor until the first occurrence of the ' character (including
+the character itself)
+dt' to do like the above example but exculding the character it self
+d/hello to delete everything until the first occurrence of hello
+type ggdG to delete complete document
+
+USEFUL OPERATORS
+
+c change deltes a piece of text and then send you into insert mode.
+d delete
+y yank(copy)
+p paste
+= format
+g~ toggle case
+gu and gU alternative to g~
+>(shift right): adds indentation 
+<(shift legt): remove indentation.
+
+hello my name is rishav
+
+ggyG copies whole documents
+gUw capitalizes a word.
+c/hello changes everything until the first occurrence of hello.
+cc changes a whole line.
+D deletes form the cursor to the end of the line, c changes to the end of a line,
+Y like yy copies a complete line.
+
+yy copies a complete line , P paste  something before the cursor
+D deletes from the cursor to the end of the line,
+C changes to the end of a line
+
+{operator}{a|i}{text-object}
+
+w for word
+s for sentence
+',",` for quotes
+p for paragraph 
+b (or(,)) for block surrounded by ()
+B (or{,}) for block surrounded by {}
+<,> for a block surrounded by <>
+[,] for a block surrounded by []
+t for tag.
+
+so in order to delete different bits of text you could any of the following commands:
+daw to delete a word (plus trailing whiter space)
+ciw to change inner word.
+das to change inner word.
+das to delete a sentence (dis to delete inner sentence)
+da" to delete something in double quotes including the quotes themselve (di" deletes only the content inside the quotes
+and spares the quotes)
+ci" to change something inside double quotes
+dap to delete a paragraph
+dap da( or da) to delete a block surrounded by (
+daB da{ or da} to delete a block surrounded by {
+dat to delete an html tag
+cit to change the contents of an html tag
+
+s - delete the character under the cursor and puts into inset mode.
+~ to switch case for a single character.
+gi puts you into insert mode at the last place you left inset mode.
+
+VISUAL MODE
+v for visual mode character-wise .
+V for visual mode line-wise.
+
+search for word with /word
+apply change to next match dgn
+repeat change to next match with .
+just press . until you're done
+collect reward much faster
+
+after using gn there's no need to combine n and . because . 
+already includes the next match.
+
+
+YANKING AND PUTTING
+y{motion} yank
+yy  Y yank line
+p paste after cursor
+P paste before cursor
+
+YANKING
+y is an operator. you can combine it with any of the motions and text-objects you've learned to yank stuff to your
+heart's desire:
+
+yl yanks a letter,
+yaw yanks a word
+yas yanks a sentence
+yi(yanks everything within ( and so on...
+
+PASTING
+in order to paste things you use the p command and its variants
+
+p pastes something after the cursor
+P pastes something before the cursor
+gp same as p but puts the cursor after the pasted selection 
+gP same as P and puts the cursor after the pasted selection.
+
+Note: pasting in vim is kind of special and the behaviour of p and P depend on wheher you've yanked characters or
+lines.if you've yanked characters then pasting will put those characters after or before the cursor(no surprisr there)/
+if you've yanked lines, how ever pasting will put thoselines after or before the line where the cursor is resting on.
+    
+    USEFUL COPY PASTING
+yyp duplicate a line.
+yyP idem but above
+ddp ddP swap lines.
+yy{count}p duplicate line n times
+
+dlp or xp to swap a characters
+ddp   to swap couple of lines.
+
+"ayas yanks a sentence and stores it in register a
+"ap to paste.A instead of a appends
+
+the yank register lets you have access to what you copied last via the y command
+:reg command to see what is in your registers.
+:reg {register} to inspect the content of a specific register.
+
+pasting in insert mode
+ctrl-R" pastes the content of the unnamed register
+ctrl-T a pastes the contents of register a
+ctrl-R 0 pasts the contents of the yank register
+
+SPLITS
+
+:sp {relative-path-to-file} to open a file in a horizontal split
+:vsp {relative-path-to-file} to open a file in a vertical split
+
+ctrl-w s to open horizontal split
+ctrl-w v to open vertical split
+
+use crtl-w + hjkl to move between splits
+ctrl-w then l move to the right split in verticla split
+
+
+TAB
+
+:tabnew file to open a file in a new tab
+:tabn (:tabnext) to go the next tab
+:tabp (:tabprevious) to go to the previous tab
+:tabo (:tabonly) to close all other tabs
+
+:%s/word/word/g
+
+

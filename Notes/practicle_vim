@@ -1,0 +1,17 @@
+The Vim Way chap 1
+
+1) Our work is repetitive by nature.
+2) the dot command is our starting point. This seemingly simple command is the most versatile tool in the box, and
+understand it is the first step toward vim mastery.
+
+The dot command lets us repeat the last change. It is the most powerful and versatile command in vim.
+
+>G command to increase the indentation form the current line Until the end of the file.
+
+We can think of . command as being a miniature macro, or a "micro".
+
+Tip 1 Meet the dot method
+Tip 2 Don't Repeat Yourself.
+
+
+

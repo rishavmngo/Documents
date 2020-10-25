@@ -1,0 +1,22 @@
+>code runnong inkernael mode has unrestricted access to the processor and main memory.
+>The area that only the kernel can access is called kernel space.
+>User mode, in comparison, restricts access to a (usually quite small) subset of memory and safe cpu operations.
+>if a process makes a mistake and crashes, the consequence are limited and can cleaned up by the kernel.this means that if your we browser crashes, it probably won't take down the scientific computation that you've veen running in the background for days.(haywire)out of control
+>In theory, a user process done haywire can't cause serious damage to rest of the system.
+
+HARDWARE
+>the main part in hardware is main memory.In its most raw form, main memory is just a big storage area for a bunch of 0s and 1s.
+>Each 0 and 1 is called a bit.
+>This is where running kernel and processes reside they're just big collections of bits.
+> A cpu is just an operator on memory it reads its instrucion and data from the memory and writes data from the memory
+>You often hear the term state. State is just a particular arrangment of bits.The term "image" refers to a particular physical arrangement of bits.
+
+THE KERNAL
+>we are talking about main memory because the kernel revolve around main memory.
+>One of the kernal task is to split memory into many subdividions
+>kernel ensure that each process keeps certain share of memory.
+   #The kernel is in charge of managing tasks in four general system areas
+	>PROCESSES The kernel is responsible for determining which processes are 		 allowed to use the cpu.
+	>MEMORY The kernel needs to keep track of all memory,What is currently 		 allocated to a particular process, what might be shared between processes, 		 and what is free
+
+

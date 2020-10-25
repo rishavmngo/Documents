@@ -1,0 +1,30 @@
+local computer>staging area>git repo
+[git init] to create repository
+[git add .]  add all the changes to the staging area
+[git commit -m "this is our first commit"] take snapshot and the message is our recalling the commit
+[git log] commit history
+[git log --author="Bucky"] to see a commit from particular author
+[git status] tell you if there is any changes
+[git add somethig.txt] add particular file
+
+> If we edit any file which is in the repositry then we have to do a commit to save modification or to the file in git repositor
+
+[git diff] let you see the difference in the file you just edited and the file is in git repository.
+
+[git diff --staged] compare file in git repo to staging area file.
+
+
+[git rm something.txt] delete the file from index and tree.
+
+[git mv something.txt somethere.txt] file renamed
+[git mv somethere.txt cascadedirectory/something.txt] move the file to new directory
+[git commit -am "fdfd"] ditch the staging area
+[git checkout -- index.html] make the index.html the working copy
+[git reset HEAD  index.html] unstage the file
+[git checkout 01e7dba -- index.html] copy the index.html from 01e7dba commit then commit change
+[git remote add githubll https://github.com/bucky] set the url to githubull
+[git push -u githubrepo master] uploading file to github and they ask for username and password 
+
+[git push -u origin master] push the
+
+

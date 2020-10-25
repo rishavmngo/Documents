@@ -1,0 +1,695 @@
+From the book "The Linux command line"
+
+....................................................................................
+
+"graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible"
+
+SHELL 
+> when we speak of the command line, we are really referring to the shell
+> The shell is a program that takes keyboard commands and passed them to the operating system to carry out.
+> All Linux distribution supply a shell called bash.
+
+Terminal Emulators
+> The terminal we see in OS is  a terminal emulator
+> We need terminal emulator to interact with the shell.
+
+
+[rishav@mngo~:$] <----This is called a shell prompt
+
+> If the last character of the prompt is a hash mark ( # ) rather than a
+dollar sign, the terminal session has superuser privileges.
+> This means either we are logged in as the root user or we selected a terminal emulator that provides superuser (administrative) privileges.
+
+> If we press the up arrow, we will see that the previous command entered,
+This is called command history
+> Most Linux distributions remember the last 1,000 commands by default
+
+***MOUSE TRICK
+If you highlight some text by holding down the left mouse button and dragging
+the mouse over it (or double-clicking a word), it is copied into a buffer main-
+tained by X. Pressing the middle mouse button will cause the text to be pasted
+at the cursor location.
+
+df --To see the current amount of free space on our disk drives.
+free --to display the amount of free memory.
+
+NAVIGATION
+pwd --Print name of current working directory
+cd --Change directory
+ls --List directory contents
+
+> Linux follow hierarchical directory structure like windows
+> The first directory in the file system is called the root director.
+> The root directory contains files and sub directories, which contain more files and sub directories, and so on.
+> Note that unlike windows which has a separate file system tree for each storage device, UNIX like systems such as Linux always have a single file system tree,regardless of how may drives or storage devices are attached to the computer
+> system administrator decide where the storage device added.
+
+The current working directory
+>Is the directory we are in currently.
+
+Absolute path names
+> An absolute path name begins either the root directory and follows the tree branch by branch until the path to the desired directory or file
+
+> To navigate to root cd /
+> To navigate to a bin folder in root cd /usr/bin
+
+Relative path names
+> where an absolute path name starts from the root directory and leads to its destination , a relative path name starts from the working directory.
+> The . notation refers to the working directory, and the .. notation refers to the working directory's parent directory.
+
+cd .. -- navigate to parent directory
+
+cd ./bin -- same as /usr/bin in all most all cases we can omit ./ part just type 
+cd bin
+
+
+
+ IMPORTANT FACTS ABOUT FILENAMES
+> filenames begin with period character are hidden. 
+this means ls will not list them unless you say [ls -a]
+>Linux has no concept of a file extension.
+>filenames and commands are case sensitive
+
+cd Changes the working directory to your home directory.
+cd - Changes the working directory to the previous working directory.
+cd ~user_name Changes the working directory to the home directory of user_name .
+For example, typing cd ~bob will change the directory to the home
+directory of user “bob.
+
+
+EXPLORE THE SYSTEM
+> As we know ls is use to list directory.we can also specify the directory to list
+  [ls /usr]
+> we can specify multiple directories 
+  [ls ~ /usr] here we specify two directories user's home directories(~) and /usr .
+
+> we can also change the format of the output to revel more detail.
+[ls -l] adding -l to command we changed the format to the long format.
+
+OPTIONS AND ARGUMENTS(how command works)
+> commands are often followed by one or more options that modify their behavior and
+  further, by one or more arguments,the items upon which the command acts.
+  [command -options arguments]
+> most commands use options, which consist of a single character preceded by a dash
+ for example -l
+>we will use ls [-lt --reverse] to short items in reverse order, here t is another options stands for short and --reverse is type of shorting.
+> long options consisting of a word preceded by two dashes[--a]
+> the ls command has large number of possible options,the most common are listed in table
+
+OPTION 		LONG OPTION 		DESCRIPTION
+-a		-all			list all files, even those with names that 						begin with a period, which are normally not 						listed (that is, hidden)
+
+-A		--almost-all		Like the -a option except it does not 						list . (current directory) and .. (parent)
+
+
+-d		--directory 		ordinarily, if a directory is specified, 
+ 					ls will list the contents of the directory, 						not the directory itself. 					
+
+FIELDS
+[-rw-rw-r--  1 rishav rishav   73 Apr 16 16:35  first.c]
+
+ [-rw-r--r--]  Access right to the file. The first chapter indicates the type of file.among the different typed, a leading dash means a regular file,while a d indicates a directory . The next three characters are the access rights for the file's owner, the next three are for members of the file's group, and the final three are for everyone else.
+
+
+[1] file's number of hard links.see "symbolic Links" 
+the first rishav is the username of the file's owner and the second rishav is the name of the group that owns the file.
+73 size of the file in bytes
+Apr 16 16:35 date and time of last modification.
+first.c name of the file with extension
+
+
+DETERMINING A FILE'S TYPE WITH FILE
+
+> [file first.c] the file command will print a brief description of the file's contents.
+
+> one of the common ideas in UNIX like operating systems such as Linux is that "everything is a file" as we will see that how true that statement is.
+
+
+VIEWING FILE CONTENTS WITH LESS
+> the less command is a program to view text files. throughout our Linux system, there are many files that contain human readable text.the less program provides a convenient way to examine them.
+
+> we are interested in the text file because many of the files that contain system setting(called conf file) are stored in this format, and being able to read them gives us insight about how the system works.
+
+> some of the actual programs that the system uses (called script) are stored in this format.
+[less filename]
+
+WHAT IS TEXT?
+text file is nothing but bunch of character stored to represent numbers.
+
+[less /etc/passwd] once the less program starts, we can view the content of the file
+press q to quit
+press G to move to the end of the text file
+1G or g to move to the beginning of the text file.
+/characters search for the next occurrence of the previous search
+
+
+[/] the root directory, where everything begins
+
+[/bin] contains binaries(programs) that must be present for the system to boot and run
+
+[/boot] contains the Linux kernel, initial ram disk image(for drivers needed at boot time), and the boot loader. Interesting files include /boot/grub/grub.cong, or menu.ist, which is used to configure the boot loader, and /boot/vmlinuz(or something similar). the Linux kernel
+
+[/dev] this is a special directory that contain devices nodes. "every thing is a file" also applies to devices.here is where the kernel maintains a list of all the devised it understands.
+
+[/etc] contains all the system-wide congfig files. it also contains a collection of shell scripts that start each of the system services at boot time.
+
+[/home] in normal config, each user is given a directory in /home Ordinary users can writes files only in their home directories. thus limitation protects the system from errant user activity.
+
+[/lib] contains shared library files used by the core system programs.these are somolar to dynamic link libraries(dlls) in windows.
+
+[/lost+found] each formatted partion or device using linux file system, such as ext3, will have this directory. it is used in the case of a partial recovery from a file system corruption event. Unless something really bad has happened to your system, this directory will remain empty.
+
+[/media] on modern linux systems, the /media directory will contain the mount points for removable media such a usb drives, cd-roms, and so on , that are mounted automatically ar insertion.
+
+[/mnt] on older linux systems, the /mnt directory contains mount points for removable devices that have been mounted manually.
+
+[/opt] the /opt directory is used to install "optional" software. This is mainly used to hold commercial software products that might be installed on the system.
+
+[/proc] the /proc directory is special. it's not real file system in the sense of files stored on your hard drive.it is a virtual file system maintained by the linux kernel.the files are readable and will give you a picture of how the kernel sees your computer.
+
+[/root] this is the home directory for the root account.
+
+[/sbin] contains "system" binaries. these are programs that perform vital system tasks that are generally reserved for the superuser.
+
+[/tmp] directory is intended for the storage of temporary, transient files created by various programs. some config caused this directory to be emptied each time the system is rebooted.
+
+[/usr] directory tree is likely the largest one on a linux system. it contains all the programs and support files used by regular users.
+
+[/usr/bin] contains the executable programs installed by your linux distribution.it is not uncommon for this directory to hold thousands of programs.
+
+[/usr/lib] the shared libraries for the programs in /usr/bin.
+
+[/usr/local] The /usr/local tree is where programs that are not included with your distribution but are intended for system-wide use are installed.Programs compiled from source code are normally installed in /usr/ocal/bin. On a newly installed Linux system, this tree exists, but it will be empty until the system administrator puts something in it.
+
+[/usr/sbin] Contains more system administration programs.
+
+[/usr/share] /usr/share contains all the shared data used by programs in /usr/bin.
+This includes things such as default configuration files, icons,screen backgrounds, sound files, and so on.
+
+[/usr/share/doc] Most packages installed on the system will include some kind of
+documentation. In /usr/share/doc, we will find documentation files organized by package.
+
+[/var] With the exception of /tmp and /home, the directories we have looked at so far remain relatively static; that is, their contents don’t change. The /var directory tree is where data that is likely to change is stored. Various databases, spool files, user mail, and so forth, are located here.
+
+[/var/log] /var/log contains log files, records of various system activity. These
+are important and should be monitored from time to time. The most
+useful ones are /var/log/messages and /var/log/syslog. Note that
+for security reasons on some systems, you must be the superuser to
+view log files.
+
+
+SYMBOLIC LINKS
+As we look around, we are likely too see a directory listing(for example,/lib) with an entry like this:
+
+[lrwxrwxrwx 1 root root 11 2018-08-11 07:34 libc.so.6 -> libc-2.6.so]
+
+> This is special kind of a file called a symbolic link(also known as a soft link or symlink).
+
+> Unix-like system, it is possible to have a file referenced by multiple names.
+
+> suppose we want a shared file which is used by many programs and the shared file is frequently changing the versions
+so we create a link to navigate to current version if we change the file we only have to delete the link and create new
+link to navigate to new file.
+
+> Hard links also allow files to have multiple names, but they do it in a different way.
+
+
+The most frequently used Linux commands used for manipulating both files and directories:
+
+[cp] copy files and directories 
+[mv] Move/rename files and directories
+[mkdir] create directories
+[rm] remove files and directories
+[ln] Create hard and symbolic links
+
+These work can also be done by graphical file manager 
+but command line is very powerful and flexible.
+for example how can you delete all HTML files from one directories to another 
+    [cp -u *.html destination]
+
+WILDCARDS
+> also know as globbing allows you to select filenames based on patterns of characters.
+
+*           matches any characters
+?           matches any single character
+[characters]matches any char that is a member of the set characters
+[!charactes]matches any character that is not a member of the set characters.
+[[:class:]] matches any character that is a member of the specified class.
+
+[:alnum:] matches any alphanumeric character
+[:alpha:] matches any alphabetic character.
+[:digit:] matches any numeral
+[:lower:] matches any lowercase letter
+[:upper:] matches any uppercase letter
+
+ 
+[cp file.doc newfile.doc] to make a copy of a file called file.cdoc in the current directory as newfile.doc
+
+______________________.
+$ ls                  | a.txt b.txt is copied to "new" directory
+a.txt  b.txt  new     |
+                      |
+Initially new is empty|
+$ ls new              |
+                      |
+$ cp a.txt b.txt new  |
+                      |
+$ ls new              |
+______________________|
+a.txt  b.txt
+
+cp item1 item2 copied the single file or directory item1 to the file or directory item2. this command
+
+cp item.... directory
+copies multiple items (either files or directories) into a directory.
+
+USEFUL OPTIONS
+-a, --archive Copy the files and directories and all of their attributes, including ownerships and permissions.
+
+-i, --interactive Before overwriting an existing file, prompt the user for confirmation. If this option is not specified,
+cp will silently(meaning there will be no warning) overwrite files.
+
+-r , --recursive Recursively copy directories and their contents. This option (or the -a option) is required when
+copying directories.
+
+-u , --update when copying files from one directory to another, only copy files that either don't exist or are newer
+than the existing corresponding files in the destination directory. This is useful when copying large numbers of files
+as it skips files that don't need to be copied.
+
+-v , --verbose display information message as the copy is performed.
+
+some command
+
+cp file1 file2       -        copy file1 to file2.if file2 exists, it is overwritten with the contents of file1. if file2 does
+not exist, it is created.
+
+
+cp -i file1 file2              same as previous command , except that if file2 exists, the user is prompted before it is overwritten.
+
+
+
+cp file1 file2 dir1                copy file1 and file2 into directory dir1. The directory dir1 must already exist.
+
+
+
+cp dir1/* dir2            using a wildcard, copy all the files in dir1 into dir2. The directory dir2 must already exist.
+
+
+
+
+cp -r dir1 dir2           copy the contents of directory dir1 to directory dir2. if directory dir2 does not exist, it is created
+and after the copy, will contain the same contents as directory dir1. if directory dir2 does exist, then directory dir1
+(and its contents ) will be copied into dir2.
+
+
+
+
+
+move command
+
+mv file1 file2
+
+mv -i file1 file2              same as the previous command, except that if file2 exists, the user is prompted before it
+is over written.
+
+mv file1 file2 dir1            move file1 and file2 into directory dir1. the directory dir1 must already exits.
+
+
+mv dir1 dir2              if directory dir2 does not exist, vreate directory dir2 and move the contents of directory
+dir1 to dir2 and delete direcoty dir1. if directory dir2 does exist, move directory dir1 (and its contents) into
+directory dir2.
+
+rm---remove files and directories
+
+the rm commands is used to remove (delete) files and directories, as shown here:
+
+----------------------------------------------------------------------------
+rm item....
+----------------------------------------------------------------------------
+
+where item is one or more files or directories.
+
+rm file1    
+
+rm -i file1 
+ 
+rm -r file1 dir1 
+
+rm -rf file1 dir1
+
+
+ln ---create links
+
+    The ln command is used to create either hard or symbolic links. It is used is one of two ways. 
+
+The following creates a Hard link:
+ln file link
+
+The following creates a symbolic link:
+ls -s item link
+
+where item is either a file or a directory.
+
+Hard Links
+Hard links are the original Unix way of creating links, compared to symbolic links,
+
+A hard link cannot reference a file outside its own file system. This means a link cannot reference a file that is not
+on the same disk partition as the link itself.
+
+A hard link may not reference a directory.
+
+SYMBOLIC LINKS
+
+When you delete a symbolic link , however only the link will continue to exist but will point to nothing. in this case ,
+the link is said to be broken links in a distinguishing color, such as red, to reveal their presence.
+
+Creating hard link
+
+Remember that a file will always have at leas one link because the file's name is created by a link.
+
+Files are made up of two parts 
+the data part containing the file's contents
+the name part that holds the file's name
+
+When we create hard links, we are actually creating additional name parts that all refer to the same data part. 
+The system assigns a chain of disk blocks to what is called an inode.
+
+The ls command has a way to reveal this information. It is invoked with -i option.
+
+from this option we can find inode number
+
+CREATING SYMBOLIC LINKS
+
+symbolic links were created to overcome the two disadvantage of hard links:
+
+> Hard links cannot span physical devices.
+> Hard links cannot reference directories, only files.
+
+Symbolic links are special type of file that contains a text pointer to the target file or directory.
+
+creating symbolic links is similar to creating hard links.
+
+ls -s fun fun-sym
+
+we add -s option to create symbolic link rather than hardlinks.
+
+when we are creating a symbloic link , we are creating a text decription of where the target file is relative to the symbolic link.
+
+the length of the symbolic link file is the number of characteres in the string rather than the length of the file to which it is pointing.
+
+WORKING WITH COMMANDS
+
+type indicate how a cmmand name is interpreted
+which display which executable program will be executed
+help Get help for shell builtins
+man Dispaly a command's manual page
+apropos Display a list of appropriate commands
+info Display a command'info entry
+whatis Display one-line manual Page descriptions
+alias Create an alis for a command
+
+What exactly are commands?
+
+>> a command can be of four different things.
+
+An executable program - like all those files we saw in /usr/bin, Programs can be compiled binaries such as programs written in c and c++, or programs written in scripting languages such as the shell, perl, python, ruby and so on.
+
+A command bult into the shell itself - bash supports a number of commands internally called shell builitins. The cd command, for example, is a shelll buliltin.
+
+A shell funtion. Shell functions are miniature shell scrpts incorporates into the envirnonment. We will cover configuring the environment and writing shell funcitons in later chapters, but for now, just be aware that they exist.
+
+An alias - aliases are commands that we can define ourselves, built from other commands.
+
+
+INDENTIFYING COMMANDS 
+
+it is often useful to know exactly which of the four kinds of commands is being used, and LINUX provides a couple of ways to find out.
+
+[type command] where command is the name of the command you want to examine.
+
+
+  Which ---Display an executable's location
+  sometimes there is more than one version of an executable program installed on a system while this is not common on destop version, It's not unusual on larger servers. To determine the exact location of a given executable, the which command is use.
+
+  [which command] where command only for executable programs , not builints or aliases that sre subtitutes for actual executable programs .When we try to use which on a shell builtin--- for example, cd--we either get no response or get an error message.
+  
+
+
+
+  Getting a command's Documentation
+
+  with this knowledge of what a command is, we can now search for the documentation available for each kind of command.
+
+  help--Get Help for shell builtins
+[help cd]
+
+
+--help ----Display Usage Information
+Many executable programs support a --help option that displays a description
+of the command's supported syntax and option. For example:
+
+$ mkdir --help
+
+
+man---Display a program's Manual Page
+
+Most executable programs intended for command line use provide a formal piece of documentation called a manual or man page.
+[man program]
+
+where program is the name of the command to view.
+
+
+on most linux systems, man uses less to display the manual page, So all of the familier less commands work while displaying the page.
+The "manual" that man displays is broken into a section and covers not only iser commands but also system administration commands, Programming interfaces, file formats, and more.
+
+1 ---- user commands
+2 ---- Programming interfaces for kernal system calls
+3 ---- Programming interfaces to the C library
+4 ---- Special files such as devices nodes and drivers
+5 ---- file formats
+6 ----- Games and amusemets such as screen savers
+7 ----  Miscellaneious
+8 ---- System administration commands
+
+sometimes we need to refer particular section
+
+so 
+  [man section search_term]
+
+  example $ man 5 passwd
+  this will display the man page describing the file formats of the /etc/ passwd file.
+
+  apropos --- Display Approprite Commands
+  It is possibe to search the list of man pages for possible matches based on a search term. It's crude but sometimes helpful.
+
+  [apropos partition]
+result: addpart (8)   -simple wrapper around the "add partition" ioctl
+
+the first field is man page and second field shows the section.
+
+
+
+  NOTE: the man command with the -k option performs the same function as apropos.
+
+
+
+WHATIS---Display one-line manual Page descriptions
+
+thae whatis program displays the name and a one-line description oa a man page matching a specified Keyword
+
+[whatis ls]
+
+ls            (1) - list directory contents
+
+info --Display a Program's info Entry
+The Gnu project provides an alternative to man pages for their programs, called info.
+info manuals are displayed with a header program named, appropriately enough, info.
+
+.gz extension indicates that they have been compressed with gzip compression program.
+we use zless to see the content of file extension .gz
+
+
+CREATING OUR OWN COMMANDS WITH ALIAS
+
+> we can run more than one command at one time by seperating by semicolon(;)
+[command1; command2; command3;]
+example cd /usr; ls; cd -
+
+we can create our own command by alias
+1. think of a name
+2. and then check with (type) that the name is exist or not if not you are good to go
+[alias foo='cd /usr; ls; cd -']
+
+Notice the structure of this command, shown here:
+alias name = 'string'
+
+REDIRECTION
+
+cat      concatenate files
+sort     sort lines of text
+uniq     report or omit repeated lines
+grep     print lines matching a pattern
+wc       print newline, word and byte counts for each file
+head     output the first part of a file 
+tail     output the last part of a file
+tee      read from standard input and write to standard output and files
+
+
+program such as la actualy send their results to a special file called standard output (often expressed as stdout) and their status message to another file called standard expressed as stdout) and their status message to another file called standard error(stderr).
+
+In addition , many programs take input from a facility called standard input(stdin) whcih is , by default, attached to the keyboard.
+
+> We can change the direction of output and input by redirection.
+
+> we could use the > operator for redirection
+> when we try to get information from ls with a non-existing directory then we get error and the error does't store in the file it printed on the screen
+> ls program does not send its error message to standard output. Instead, like most well-written Unix programs, it sends its errors messages to standard error, the error message was still sent to the screen.
+
+> using the >> operator will result in the output being appended to the file.
+
+Redirecting Standard Error
+> it lacks the ease of a dedicated redirection operator.
+> to redirect standard error, we must refer to its file descriptor.
+> the file descriptor number for standrd error is 2.
+
+> so we can use this [ls -l /bin/usr 2> ls-error.txt]
+
+Redirecting standard Output and Standard Error to One File
+
+> The traditional method which workd with old version of the shell:
+[ls -l /bin/usr > ls-output.txt 2>&1]
+using this method, we perform two redirections. first we redirect standard ouput to the file ls-output.txt and then we redirect file descriptor 2(standard error) to file descriptor 1(standard output) using the notation 2>&1.
+
+Notice That The Order of The Redirections is Significant
+> The output redirection always come first .
+
+Second method
+[ls -l /bin/usr &> ls-output.txt] with single & we redirect error to the file.
+[ls -l /bin/usr &>> ls-output.txt] we can also append the error to the file.
+
+    
+Disposing of Unwanted Output
+> sometimes we don't want output from a command, we just want to throw it away.
+> This applies particularly to error and status message.
+> The system provides a way to do this by redirecting output to a special file called /dev/null.
+> this file is a system device often referred to as a bit bucket, which accepts input and does nothing with it.
+
+[ls -l /bin/usr 2> /dev/null]
+
+Redirectin Standard Input
+
+cat:Concatenate Files
+> The cat command reads one or more files and copies them to standard ouput like so:
+[cat filename]
+
+> you can use it to display files without Paging. 
+> cat is often used to display short text files. 
+> Because cat can accept more than one file as an argumetn, it can also be used to join files together.
+> Suppose we have downloded a large file that has been split into muliple parts (mulitmedia files are often split this way in usenet) and we want to join them back together.
+If the files were named as follows:
+[movie.mpeg.001 movie.mpeg.002 ... movie.mpeg.099]
+we could join them back together with this command:
+
+[cat movie. mpeg.0* > movie.mpeg]
+
+What happen if we just type cat
+[cat]
+> we know that the defult input is keyboard
+> it gives us to add some text from keyboard.
+> press ctrl-d for tell cat end of file(EOF).
+> IN absense of filename argumets, cat copies standard input to standard output, so we see our line of text repeated.
+
+we can create a file called lazy_dog.txt containing the text in our example.
+[cat > lazy_dog.txt]
+
+
+Pipelines
+
+> The Capability of commands to read data from standard input and send to standard output is utilized by a shell feature called pipelines. 
+> Using the pipe operator, the standard output of one command can be piped into the standard input of another.
+command1 | command2
+
+[ls -l /usr/bin | less]
+
+This is extremely handy! using this technique, we can conveninetl examine the output
+ 
+
+Filters
+> Pipelines are often used to perform complex operations on data. It is possible to put several commands together into a pipeline.
+> filters take input, change it somehow, and then output it. The first one we will try is sort.
+[ls /bin /usr/bin | sort | less]
+
+Because we specified two directories (/bin and /usr/bin), the output of ls would have consisted to two sorted lists, one for each directory.
+
+THE DIFFRENCE BETWEEN > AND |
+At first glance, it may be hard to understand the redirection performed by the pipeline operator | versus the redirection operator >. 
+
+uniq: Report or Omit Repeated Lines
+> The uniq command is often used in conjucntion with sort. uniq accept a sorted list of data from either standard input or single filename argument(see the uniqman page for details), by default, removes any duplicates from the list. 
+
+[ls /bin/usr/bin | sort | uniq | less]
+
+if we want to see the list of duplicates instead, we add the -d option to uniq like so:
+
+[ls /bin/usr/bin | sort | uniq -d | less]
+
+wc: Print Line, word, and byte counts
+> the wc (word count ) command is used to display the number of lines, word and bytes contained in files.
+[wc ls-output.txt]
+>> 7902 64566 503634 ls-output.txt
+
+It prints out three numbers: lines, words, and bytes contained in ls-output.txt.
+> -l option limits its output to report only lines. 
+> Adding it to pipeline is a handy way to count things. Too see the number of items we have in our sorted list, we can do this:
+[ls /bin /usr/bin | sort | uniq | wc -l]
+>> 2728
+
+grep: print Lines Matching a Pattern
+> grep is a powerful program used to find text patterns within files. It's used like this:
+
+[grep pattern filename]
+
+> when grep enconters a pattern in the file, it prints out the lines containing it.
+
+> suppose we wanted to find all the files in our list of programs that had the word zip embedded in the name.
+[ls /bin /usr/bin | sort | uniq | grep zip]
+
+There are a couple of handy options for grep.
+
+> -i, which cause grep to ignore case.
+> -v, which tells grep to print only those lines that do not match the pattern
+
+head/tail: print first/last part of files
+> sometime you don't want all the output from a command.
+
+head and tail by default print the first and last 10 lines respectively 
+> by option -n you can customize the line number
+
+ex:- [head -n 5 ls-outpud.txt]
+
+These can be used in pipelines as well:
+
+[ls /usr/bin | tail -n 5]
+
+tail has an option that allows you to view files in real time.
+[tail -f /var/log/messages]
+
+using the -f option tail continues to montor the file, and when new lines are appended they immediately appear on the display. 
+this continues until you type ctrl-c
+
+tee: read from stdin and output to stdout and files
+In keeping with our plumbing metaphor, linux provides a command called tee that creates a "tee" fitting on our pipe.
+
+
+
+SEEING THE WORLD AS THE SHELL SEES IT
+
+echo Display a line of text
+
+EXPANSION
+> Each time we type a command and press the Enter key, bash performs several subtitution upon the text before to carries out our command.
+> 
+
+
+
+
